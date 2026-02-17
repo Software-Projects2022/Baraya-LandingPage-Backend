@@ -66,7 +66,7 @@
         .booking-banner {
             position: relative;
             width: 100%;
-            height: 400px;
+            height: 250px;
             background-image: url('{{ asset('assets/img/docto.jpg') }}');
             background-size: cover;
             background-position: center;
@@ -122,14 +122,9 @@
                             bookingForm.reset();
                             // Show success modal
                             successModal.style.display = 'flex';
-                        } else {
-                            alert('حدث خطأ أثناء إرسال الحجز');
-                        }
+                        } 
                     })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        alert('حدث خطأ أثناء إرسال الحجز. يرجى المحاولة مرة أخرى.');
-                    })
+
                     .finally(() => {
                         // Re-enable submit button
                         submitButton.disabled = false;
