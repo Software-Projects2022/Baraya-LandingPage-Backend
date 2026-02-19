@@ -22,7 +22,7 @@
 
 
                         <div class="cta-buttons">
-                            <button class="btn btn-orange btn-book" data-service-id="0">
+                            <button class="btn btn-orange btn-book" onclick="window.location.href='{{ route('booking', 'main') }}'" data-service-id="0">
                                 <span data-service-id="0">احجز موعدك الآن</span>
                                 <i class="fas fa-arrow-left"></i>
                             </button>
@@ -164,7 +164,7 @@
                         <div class="service-content">
                             <h3>{{ $service->name_ar }}</h3>
                             <p>{{ $service->short_description_ar }}</p>
-                            <button class="btn-book" data-service-id="{{ $service->id }}">
+                            <button class="btn-book" onclick="window.location.href='{{ route('booking', $service->id) }}'" data-service-id="{{ $service->id }}">
                                 <span data-service-id="{{ $service->id }}">احجز الآن</span>
                                 <i class="fas fa-arrow-left"></i>
                             </button>
@@ -198,7 +198,7 @@
                                     كفاءة وجودة حياتك اليومية بثقة
 
                                 </p>
-                                <button class="card-btn btn-book"  data-service-id="0">احجز الآن</button>
+                                <button onclick="window.location.href='{{ route('booking', 'main') }}'" class="card-btn btn-book"  data-service-id="0">احجز الآن</button>
 
                             </div>
                         </div>
@@ -217,7 +217,7 @@
                                     وتحسين الصحة واللياقة العامة لمختلف الأعمار
 
                                 </p>
-                                <button class="card-btn btn-book"  data-service-id="0">احجز الآن</button>
+                                <button onclick="window.location.href='{{ route('booking', 'main') }}'" class="card-btn btn-book"  data-service-id="0">احجز الآن</button>
                             </div>
                         </div>
                     </div>

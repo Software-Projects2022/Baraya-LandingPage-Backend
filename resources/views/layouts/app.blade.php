@@ -17,6 +17,38 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <!-- Custom CSS -->
     <link href="{{ asset('assets/css/style_tow.css') }}" rel="stylesheet">
+
+
+    <!-- Snap Pixel Code -->
+    <script type='text/javascript'>
+        (function(e,t,n){if(e.snaptr)return;var a=e.snaptr=function()
+        {a.handleRequest?a.handleRequest.apply(a,arguments):a.queue.push(arguments)};
+        a.queue=[];var s='script';r=t.createElement(s);r.async=!0;
+        r.src=n;var u=t.getElementsByTagName(s)[0];
+        u.parentNode.insertBefore(r,u);})(window,document,
+        'https://sc-static.net/scevent.min.js');
+
+        snaptr('init', '55e3d878-82ad-4e64-86d2-f32e55701d1c', {});
+
+        snaptr('track', 'PAGE_VIEW');
+
+        </script>
+        <!-- End Snap Pixel Code -->
+        <!-- TikTok Pixel Code Start -->
+        <script>
+        !function (w, d, t) {
+          w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
+        var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
+        ;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+
+
+          ttq.load('D65GMGBC77U148L34CCG');
+          ttq.page();
+        }(window, document, 'ttq');
+        </script>
+        <!-- TikTok Pixel Code End -->
+
+
 </head>
 
 <body>
@@ -32,19 +64,19 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link " href="#home">الرئيسية</a>
+                            <a class="nav-link " href="{{ route('home') }}">الرئيسية</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#about">من نحن</a>
+                            <a class="nav-link" href="{{ request()->routeIs('home') ? '#about' : route('home') . '#about' }}">من نحن</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#services">الخدمات</a>
+                            <a class="nav-link" href="{{ request()->routeIs('home') ? '#services' : route('home') . '#services' }}">الخدمات</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#why">لماذا نحن</a>
+                            <a class="nav-link" href="{{ request()->routeIs('home') ? '#why' : route('home') . '#why' }}">لماذا نحن</a>
                         </li>
 
 
@@ -110,13 +142,14 @@
 
             </div>
 
+
             <div class="copyright">
                 <p>2025 جميع الحقوق محفوظة - برايا للرعاية الطبية.</p>
             </div>
         </div>
     </footer>
 
-    <div class="modal" id="bookingModal" >
+    {{-- <div class="modal" id="bookingModal" >
         <div class="modal-content">
             <button class="modal-close" id="closeBooking">×</button>
             <div class="modal-header">
@@ -151,8 +184,8 @@
             </form>
         </div>
     </div>
-
-    <div class="modal" id="successModal">
+ --}}
+    {{-- <div class="modal" id="successModal">
         <div class="modal-content success-modal">
             <button class="modal-close" id="closeSuccess">×</button>
             <div class="success-icon">
@@ -161,7 +194,7 @@
             <h2>تم إرسال حجزك بنجاح</h2>
             <p>سيتم التواصل معك في أقرب وقت</p>
         </div>
-    </div>
+    </div> --}}
 
     <div class="whatsapp-floating">
         <a href="https://wa.me/966556339036" target="_blank" class="wa-icon wa-one" data-city="الرياض">
@@ -182,7 +215,7 @@
 
     <script src="{{ asset('assets/js/main.js') }}"></script>
 
-    <script>
+    {{-- <script>
         document.getElementById('submitBooking').addEventListener('click', function() {
             console.log('Submit booking clicked');
             const serviceId = document.getElementById('service_id').value;
@@ -219,29 +252,32 @@
         });
     </script>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
 
-        document.querySelectorAll('.btn-book').forEach(button => {
-            button.addEventListener('click', function () {
+            document.querySelectorAll('.btn-book').forEach(button => {
+                button.addEventListener('click', function () {
 
-                const serviceId = this.dataset.serviceId;
+                    const serviceId = this.dataset.serviceId;
 
-                // Set service_id in the form
-                document.getElementById('service_id').value = serviceId;
+                    // Set service_id in the form
+                    document.getElementById('service_id').value = serviceId;
 
-                // Show modal
-                document.getElementById('bookingModal').style.display = 'block';
+                    // Show modal
+                    document.getElementById('bookingModal').style.display = 'block';
+                });
             });
-        });
 
-        // Close modal
-        document.getElementById('closeBooking').addEventListener('click', function () {
-            document.getElementById('bookingModal').style.display = 'none';
-        });
+            // Close modal
+            document.getElementById('closeBooking').addEventListener('click', function () {
+                document.getElementById('bookingModal').style.display = 'none';
+            });
 
-    });
+        });
     </script>
+ --}}
+
+
 
 </body>
 

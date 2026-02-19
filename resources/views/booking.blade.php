@@ -15,36 +15,49 @@
                 <h2>احجز موعدك</h2>
                 <p>املأ البيانات وسنتواصل معك قريباً</p>
             </div>
-
-            <form id="bookingForm" action="{{ route('service.booking.store') }}" method="POST">
+            <form  action="{{ route('service.booking.store') }}" method="POST">
                 @csrf
-                <input type="hidden" name="service_id" id="service_id">
+
+                @if ($id == 'main')
+                    <input type="hidden" name="service_id" id="service_id" value="0">
+                @else
+                    <input type="hidden" name="service_id" id="service_id" value="{{ $id }}">
+                @endif
 
                 <div class="form-group">
                     <label for="name">الاسم *</label>
-                    <input type="text" name="name" id="name" required placeholder="أدخل اسمك الكامل">
+                    <input type="text" name="name" id="name" value="{{ old('name') }}" required placeholder="أدخل اسمك الكامل">
+                    @error('name')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                 </div>
 
                 <div class="form-group">
                     <label for="phone">رقم الجوال *</label>
-                    <input type="tel" name="phone" id="phone" required placeholder="أدخل رقم الجوال">
+                    <input type="tel" name="phone" id="phone" required value="{{ old('phone') }}" placeholder="أدخل رقم الجوال">
+                    @error('phone')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                 </div>
 
                 <div class="form-group">
                     <label for="city">المدينة *</label>
-                    <select id="city" name="city" required>
+                    <select id="city" name="city" value="{{ old('city') }}" required>
                         <option value="">اختر المدينة</option>
                         <option value="جدة">جدة</option>
                         <option value="الرياض">الرياض</option>
                     </select>
+                    @error('city')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                 </div>
 
                 <div class="form-group">
                     <label for="comment">تعليق (اختياري)</label>
-                    <textarea name="comment" id="comment" placeholder="أضف أي ملاحظات أو تفاصيل إضافية"></textarea>
+                    <textarea name="comment" id="comment" value="{{ old('comment') }}" placeholder="أضف أي ملاحظات أو تفاصيل إضافية"></textarea>
                 </div>
 
-                <button type="submit" id="submitBooking" class="btn-submit">إرسال الحجز</button>
+                <button type="submit"  class="btn-submit">إرسال الحجز</button>
             </form>
         </div>
     </div>
@@ -77,7 +90,7 @@
     </style>
 
     <!-- Check if session has success message -->
-    @if (session('success'))
+    {{-- @if (session('success'))
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('successModal').style.display = 'flex';
@@ -122,7 +135,7 @@
                             bookingForm.reset();
                             // Show success modal
                             successModal.style.display = 'flex';
-                        } 
+                        }
                     })
 
                     .finally(() => {
@@ -144,5 +157,5 @@
                 }
             });
         });
-    </script>
+    </script> --}}
 @endsection

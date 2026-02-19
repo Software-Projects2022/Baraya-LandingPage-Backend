@@ -25,6 +25,7 @@ Route::get('/en', [HomeController::class, 'index_en'])->name('home_en');
 // })->name('changeLang');
 
 Route::post('service/booking', [ServiceController::class, 'store'])->name('service.booking.store');
-Route::get('service/data', function(){
-    return view('service-data');
-});
+Route::get('booking/{id}', function($id){
+    return view('booking', compact('id'));
+})->name('booking');
+Route::get('booking/success/send', [ServiceController::class, 'success'])->name('booking.success');

@@ -7,15 +7,15 @@ window.addEventListener("scroll", function () {
   }
 });
 
-document.querySelectorAll(".nav-link").forEach((link) => {
-  link.addEventListener("click", function (e) {
-    e.preventDefault();
-    document
-      .querySelectorAll(".nav-link")
-      .forEach((l) => l.classList.remove("active"));
-    this.classList.add("active");
-  });
-});
+// document.querySelectorAll(".nav-link").forEach((link) => {
+//   link.addEventListener("click", function (e) {
+//     e.preventDefault();
+//     document
+//       .querySelectorAll(".nav-link")
+//       .forEach((l) => l.classList.remove("active"));
+//     this.classList.add("active");
+//   });
+// });
 
 // Mobile menu toggle
 
@@ -211,32 +211,30 @@ document.addEventListener("DOMContentLoaded", function () {
   console.log("All event listeners initialized successfully");
 });
 
-// myVideo
-const video = document.getElementById("myVideo");
-const playPauseBtn = document.getElementById("playPauseBtn");
-const muteBtn = document.getElementById("muteBtn");
+// myVideo (only on home page - safe when elements are missing)
+(function initVideo() {
+  const video = document.getElementById("myVideo");
+  const playPauseBtn = document.getElementById("playPauseBtn");
+  const muteBtn = document.getElementById("muteBtn");
+  const playIcon = playPauseBtn && playPauseBtn.querySelector("i");
+  const muteIcon = muteBtn && muteBtn.querySelector("i");
 
-const playIcon = playPauseBtn.querySelector("i");
-const muteIcon = muteBtn.querySelector("i");
+  if (!video || !playPauseBtn || !muteBtn || !playIcon || !muteIcon) return;
 
-// Play / Pause
-playPauseBtn.addEventListener("click", () => {
+  // Play / Pause
+  playPauseBtn.addEventListener("click", () => {
     if (video.paused) {
-        video.play();
-        playIcon.className = "fa-solid fa-pause";
+      video.play();
+      playIcon.className = "fa-solid fa-pause";
     } else {
-        video.pause();
-        playIcon.className = "fa-solid fa-play";
+      video.pause();
+      playIcon.className = "fa-solid fa-play";
     }
-});
+  });
 
-// Mute / Unmute
-muteBtn.addEventListener("click", () => {
+  // Mute / Unmute
+  muteBtn.addEventListener("click", () => {
     video.muted = !video.muted;
-
-    if (video.muted) {
-        muteIcon.className = "fa-solid fa-volume-xmark";
-    } else {
-        muteIcon.className = "fa-solid fa-volume-high";
-    }
-});
+    muteIcon.className = video.muted ? "fa-solid fa-volume-xmark" : "fa-solid fa-volume-high";
+  });
+})();
